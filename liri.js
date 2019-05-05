@@ -1,8 +1,9 @@
 // code to read and set any environment variables with the dotenv package //
 
-require("dotenv").config();
+var Dotenv = require("dotenv").config();
 var Spotify = require('node-spotify-api');
 var axios = require("axios");
+var moment = require('moment');
 
 // code required to import the keys.js file and store it in a variable //
 
@@ -32,7 +33,7 @@ function inputCheck(n) {
      if (n[3]){
         i = n.slice(3).join(" ");
      }else{
-        i = "Elvis";
+        i = "Barry Manilow";
         }
     }
     return i;
@@ -103,11 +104,14 @@ axios.get("https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id
   function(response) {
     var venueName = response.data[0].venue.name;
     var venueLocation = response.data[0].venue.city + ", " + response.data[0].venue.region;
-    var dateTime = response.data[0].datetime;
+    var dateTime = response.data[0].datetime;  // sample return: 2019-05-30T20:00:07
+    var truncatedDate = dateTime.slice(0,10); // sample return: 2019-05-30
+    var truncatedFormat = "YYYY/MM/DD";
+    var convertedDate = moment(truncatedDate, truncatedFormat);   
 
     console.log("Venue Name: " + venueName);
     console.log("Venue Location: " + venueLocation);
-    console.log("Date and Time: " + dateTime);
+    console.log("Date and Time: " + convertedDate.format("MM/DD/YYYY")); // sample return: 05/30/2019
 
   });
 }
