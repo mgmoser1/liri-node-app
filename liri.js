@@ -21,12 +21,21 @@ var action = input[2];
 // to catch no user input
 function inputCheck(n) {
     var i = "";
-    if (n[3]){
+    if (n[2] === "spotify-this-song") {
+      if (n[3]){
         i = n.slice(3).join(" ");
-        }else{
-           i = "The Sign";
+     }else{
+        i = "The Sign";
+     }
+    }
+    if (n[2] === "concert-this") {
+     if (n[3]){
+        i = n.slice(3).join(" ");
+     }else{
+        i = "Elvis";
         }
-        return i;
+    }
+    return i;
 }
 
 
@@ -41,6 +50,7 @@ console.log("Searching for " + searchTerm);
 
 
 // SPOTIFY-THIS-SONG //
+// This pulls information from the Spotify API using the node-spotify-api library.
 
 
 if (action === "spotify-this-song"){
@@ -84,6 +94,23 @@ if (action === "spotify-this-song"){
         console.log(err);
     });
     }
+
+// CONCERT-THIS //
+// This pulls data from the Bands in Town Artist Events API
+if (action === "concert-this"){
+
+axios.get("https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=codingbootcamp").then(
+  function(response) {
+    var venueName = response.data[0].venue.name;
+    var venueLocation = response.data[0].venue.city + ", " + response.data[0].venue.region;
+    var dateTime = response.data[0].datetime;
+
+    console.log("Venue Name: " + venueName);
+    console.log("Venue Location: " + venueLocation);
+    console.log("Date and Time: " + dateTime);
+
+  });
+}
     
 // MOVIE-THIS //
 
@@ -97,7 +124,7 @@ if (action === "spotify-this-song"){
 // );
 
 
-// CONCERT-THIS //
+
 
 // DO-WHAT-IT-SAYS //
 
