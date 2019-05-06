@@ -127,16 +127,20 @@ function liri(action, searchTerm) {
         console.log("Venue Location: " + venueLocation);
         console.log("Date and Time: " + convertedDate.format("MM/DD/YYYY")); // sample return: 05/30/2019
 
-    });
+    })
+    .catch(function (error) {
+        console.log(error);
+      });
     }
         
     // MOVIE-THIS //
     // Pulls data from the OMDB API.
     if (action === "movie-this"){
 
-        axios.get("http://www.omdbapi.com/?t=" + searchTerm + "&y=&plot=short&apikey=trilogy").then(
+        axios
+        .get("http://www.omdbapi.com/?t=" + searchTerm + "&y=&plot=short&apikey=trilogy").then(
         function(response) {
-        
+           
             console.log("Title: " + response.data.Title);
             console.log("Year Released: " + response.data.Year);
             console.log("IMDB's Rating: " + response.data.imdbRating);
@@ -146,7 +150,11 @@ function liri(action, searchTerm) {
             console.log("Plot: " + response.data.Plot);
             console.log("Actors: " + response.data.Actors);
 
-        });
+        })
+        .catch(function (error) {
+            console.log(error);
+          });
+        
     }
 
 
