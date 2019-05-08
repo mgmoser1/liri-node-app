@@ -60,10 +60,7 @@ liri(action, searchTerm);
 addToFile(action);
 addToFile(searchTerm);
 
-// Logging to text file //  NOT DONE WITH THIS. Put the function 
-// call in all of the command functions below 
-// and try to make it newline separated, not comma.
-// Make the addToFile calls below for loops through objects?
+// Logging to text file //
 // Use this thing? Object.values([name-of-object]); https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Object/values
 function addToFile(i) {
 
@@ -74,7 +71,7 @@ function addToFile(i) {
     });
 }
 
-// Log the searchTerm we built
+// Log the searchTerm
 
 function liri(action, searchTerm) {
 
@@ -101,7 +98,6 @@ function liri(action, searchTerm) {
                             album: ea.album.name});
             });
 
-            // ERROR HANDLING WORKS, ADD TO OTHERS //
         if(results.length > 0) {
             
         //   console.log (Object.values(results));
@@ -118,16 +114,6 @@ function liri(action, searchTerm) {
         }else{
             console.log("No songs by that name in the database. Please try again.")
             }
-        /*  if (results = undefined){    
-                console.log("No songs by that name in the database. Please try again.")
-            
-        }else{
-            
-            console.log("\nArtist: " + results[1].artist);
-            console.log("\nTitle: " + results[1].song);
-            console.log("\nAlbum: " + results[1].album);
-            console.log("\nPreview: " + results[1].preview);
-            } */
         })
         .catch(function(err) {
             console.log(err);
@@ -138,11 +124,15 @@ function liri(action, searchTerm) {
     // This pulls data from the Bands in Town Artist Events API
     if (action === "concert-this"){
 
-    axios.get("https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=codingbootcamp").then(
+    axios.get("https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=codingbootcamp", { validateStatus: false }).then(
     function(response) {
     
         // ERROR HANDLING WORKS, ADD TO OTHERS //
-  //      if(response.data[0].offers.status === 'available') {
+
+      if (response.data[0].venue === undefined) {
+        console.log("I couldn't find an artist by that name. Maybe they pulled a Prince? Please try again.");
+        
+     }else {
         var venueName = response.data[0].venue.name;
         var venueLocation = response.data[0].venue.city + ", " + response.data[0].venue.region;
         var dateTime = response.data[0].datetime;  // sample return: 2019-05-30T20:00:07
@@ -160,9 +150,7 @@ function liri(action, searchTerm) {
         addToFile("Venue Location: " + venueLocation);
         addToFile("Date and Time: " + convertedDate.format("MM/DD/YYYY"));
 
-   //  }else {
-   //     console.log("No artist by that name in the database. Maybe they pulled a Prince? Please try again.");
-   // } 
+  } 
         })
 
     .catch(function (error) {
@@ -180,10 +168,10 @@ function liri(action, searchTerm) {
         .get("http://www.omdbapi.com/?t=" + searchTerm + "&y=&plot=short&apikey=trilogy").then(
         function(response) {
 
-
-            // ERROR HANDLING WORKS, ADD TO OTHERS //
-       
-           
+            if (response.data.Title === undefined) {
+                console.log("Are you sure that's a movie? Please try again.");
+                
+            }else {
             console.log("Title: " + response.data.Title);
             console.log("Year Released: " + response.data.Year);
             console.log("IMDB's Rating: " + response.data.imdbRating);
@@ -202,7 +190,7 @@ function liri(action, searchTerm) {
             addToFile("Language: " + response.data.Language);
             addToFile("Plot: " + response.data.Plot);
             addToFile("Actors: " + response.data.Actors);
-        
+            }
         })
         .catch(function (error) {
             console.log(error);

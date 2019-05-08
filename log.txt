@@ -36,3 +36,108 @@ Plot: Good girl Sandy and greaser Danny fell in love over the summer. When they 
 Language: English
 
 Actors: John Travolta, Olivia Newton-John, Stockard Channing, Jeff Conaway
+
+1324547578
+
+concert-this
+
+concert-this
+
+1324547578
+
+concert-this
+
+1324547578
+
+cher
+
+concert-this
+
+concert-this
+
+cher
+
+
+Venue Name: Van Andel Arena
+
+Date and Time: 05/08/2019
+
+Venue Location: Grand Rapids, MI
+
+concert-this
+
+1212243256578
+
+concert-this
+
+barry manilow
+
+Date and Time: 05/09/2019
+
+Venue Location: Las Vegas, 
+
+
+Venue Name: MANILOW: Las Vegas - The Hits Come Home!
+
+movie-this
+
+grease
+
+Year Released: 1978
+
+Rotten Tomatoes' Rating: 75%
+
+IMDB's Rating: 7.2
+
+Language: English
+
+Plot: Good girl Sandy and greaser Danny fell in love over the summer. When they unexpectedly discover they're now in the same high school, will they be able to rekindle their romance?
+
+
+Title: Grease
+
+Country: USA
+
+Actors: John Travolta, Olivia Newton-John, Stockard Channing, Jeff Conaway
+
+movie-this
+
+ghost in the shell
+
+Year Released: 2017
+
+
+Title: Ghost in the Shell
+
+IMDB's Rating: 6.4
+
+Rotten Tomatoes' Rating: 43%
+
+Plot: In the near future, Major Mira Killian is the first of her kind: A human saved from a terrible crash, who is cyber-enhanced to be a perfect soldier devoted to stopping the world's most dangerous criminals.
+
+Actors: Scarlett Johansson, Pilou Asbæk, Takeshi Kitano, Juliette Binoche
+
+Language: English, Japanese
+
+Country: USA, India, Hong Kong, China, UK
+
+movie-this
+
+3230948348456894
+
+spotify-this-song
+
+a day without rain
+
+Title: Only Time
+
+Album: A Day Without Rain
+
+Preview: https://open.spotify.com/track/6FLwmdmW77N1Pxb1aWsZmO
+
+
+Artist: Enya
+
+spotify-this-song
+
+wlkngjndfgkjdsfg
