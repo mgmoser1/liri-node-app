@@ -1,0 +1,38 @@
+
+
+
+concert-this
+
+cher
+
+
+Venue Name: Van Andel Arena
+
+Venue Location: Grand Rapids, MI
+
+Date and Time: 05/08/2019
+
+grease
+
+movie-this
+
+movie-this
+
+grease
+
+
+Title: Grease
+
+Year Released: 1978
+
+Rotten Tomatoes' Rating: 75%
+
+IMDB's Rating: 7.2
+
+Country: USA
+
+Plot: Good girl Sandy and greaser Danny fell in love over the summer. When they unexpectedly discover they're now in the same high school, will they be able to rekindle their romance?
+
+Language: English
+
+Actors: John Travolta, Olivia Newton-John, Stockard Channing, Jeff Conaway

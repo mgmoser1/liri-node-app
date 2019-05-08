@@ -53,18 +53,36 @@ function inputCheck(n) {
 
 
 var searchTerm = inputCheck(input);
-var results = [''];
+var results = [];
 liri(action, searchTerm);
 
-// Log the searchTerm we built
+// Adding Search to log.txt //
+addToFile(action);
+addToFile(searchTerm);
 
+// Logging to text file //  NOT DONE WITH THIS. Put the function 
+// call in all of the command functions below 
+// and try to make it newline separated, not comma.
+// Make the addToFile calls below for loops through objects?
+// Use this thing? Object.values([name-of-object]); https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Object/values
+function addToFile(i) {
+
+	fs.appendFile('log.txt', '\r\n\r\n' + i, 'utf8', function(err) {
+		if (err) {
+			return console.log(err);
+		}
+    });
+}
+
+// Log the searchTerm we built
 
 function liri(action, searchTerm) {
 
     console.log("Searching for " + searchTerm);
+
+    
     // SPOTIFY-THIS-SONG //
     // This pulls information from the Spotify API using the node-spotify-api library.
-
 
     if (action === "spotify-this-song"){
         
@@ -75,6 +93,7 @@ function liri(action, searchTerm) {
             //Store the artist, song, preview link, and album in the results array
             // From https://stonesoupprogramming.com/2017/07/03/node-js-spotify/
 
+        //    console.log(JSON.stringify(spotRes.tracks.items));
             spotRes.tracks.items.forEach(function(ea){
                 results.push({artist: ea.artists[0].name,
                             song: ea.name,
@@ -82,13 +101,20 @@ function liri(action, searchTerm) {
                             album: ea.album.name});
             });
 
-            // DOESN'T WORK //
-        if(results !== ['']) {
+            // ERROR HANDLING WORKS, ADD TO OTHERS //
+        if(results.length > 0) {
             
-                console.log("\nArtist: " + results[1].artist);
-                console.log("\nTitle: " + results[1].song);
-                console.log("\nAlbum: " + results[1].album);
-                console.log("\nPreview: " + results[1].preview);
+        //   console.log (Object.values(results));
+                console.log("\nArtist: " + results[0].artist);
+                console.log("\nTitle: " + results[0].song);
+                console.log("\nAlbum: " + results[0].album);
+                console.log("\nPreview: " + results[0].preview);
+
+                addToFile("\r\nArtist: " + results[0].artist);
+                addToFile("Title: " + results[0].song);
+                addToFile("Album: " + results[0].album);
+                addToFile("Preview: " + results[0].preview);
+ 
         }else{
             console.log("No songs by that name in the database. Please try again.")
             }
@@ -114,6 +140,9 @@ function liri(action, searchTerm) {
 
     axios.get("https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=codingbootcamp").then(
     function(response) {
+    
+        // ERROR HANDLING WORKS, ADD TO OTHERS //
+  //      if(response.data[0].offers.status === 'available') {
         var venueName = response.data[0].venue.name;
         var venueLocation = response.data[0].venue.city + ", " + response.data[0].venue.region;
         var dateTime = response.data[0].datetime;  // sample return: 2019-05-30T20:00:07
@@ -122,16 +151,26 @@ function liri(action, searchTerm) {
         var truncatedDate = dateTime.slice(0,10); // sample return: 2019-05-30
         var truncatedFormat = "YYYY/MM/DD";
         var convertedDate = moment(truncatedDate, truncatedFormat);   
-
+       
         console.log("Venue Name: " + venueName);
         console.log("Venue Location: " + venueLocation);
         console.log("Date and Time: " + convertedDate.format("MM/DD/YYYY")); // sample return: 05/30/2019
 
-    })
+        addToFile("\r\nVenue Name: " + venueName);
+        addToFile("Venue Location: " + venueLocation);
+        addToFile("Date and Time: " + convertedDate.format("MM/DD/YYYY"));
+
+   //  }else {
+   //     console.log("No artist by that name in the database. Maybe they pulled a Prince? Please try again.");
+   // } 
+        })
+
     .catch(function (error) {
         console.log(error);
       });
     }
+
+
         
     // MOVIE-THIS //
     // Pulls data from the OMDB API.
@@ -140,6 +179,10 @@ function liri(action, searchTerm) {
         axios
         .get("http://www.omdbapi.com/?t=" + searchTerm + "&y=&plot=short&apikey=trilogy").then(
         function(response) {
+
+
+            // ERROR HANDLING WORKS, ADD TO OTHERS //
+       
            
             console.log("Title: " + response.data.Title);
             console.log("Year Released: " + response.data.Year);
@@ -150,6 +193,16 @@ function liri(action, searchTerm) {
             console.log("Plot: " + response.data.Plot);
             console.log("Actors: " + response.data.Actors);
 
+
+            addToFile("\r\nTitle: " + response.data.Title);
+            addToFile("Year Released: " + response.data.Year);
+            addToFile("IMDB's Rating: " + response.data.imdbRating);
+            addToFile("Rotten Tomatoes' Rating: " + response.data.Ratings[1].Value);
+            addToFile("Country: " + response.data.Country);
+            addToFile("Language: " + response.data.Language);
+            addToFile("Plot: " + response.data.Plot);
+            addToFile("Actors: " + response.data.Actors);
+        
         })
         .catch(function (error) {
             console.log(error);
