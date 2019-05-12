@@ -2,6 +2,8 @@
 
 Command Line Search App Using Node.js and Axios
 
+Additional Tools: Moment, DotEnv, Node-Spotify-API
+
 Fun and Informative Video: https://drive.google.com/file/d/1E96_HhB7Pi3pcmr3FgSTUI36iZv8aImH/view?usp=sharing
 
 Liri accepts user input from the command line and searches Spotify for songs, Bands in Town for concerts, and OMDB for movies based on the user's query. It returns results to the CLI and also logs both the query and the results to a text file.
