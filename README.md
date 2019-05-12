@@ -9,8 +9,11 @@ Liri accepts user input from the command line and searches Spotify for songs, Ba
 To use this app, you will need your very own Spotify, OMDB, and Bands In Town API keys saved in a .env file in the root directory. Don't worry, they're freeeeeeeee.
 
 Spotify Key Request: https://developer.spotify.com/dashboard/
+
 OMDB API Key Request: http://www.omdbapi.com/apikey.aspx
+
 Bands In Town: https://manager.bandsintown.com/support/bandsintown-api
+
 
 
 # HOW TO USE LIRI
