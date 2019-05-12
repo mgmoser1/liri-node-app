@@ -13,6 +13,8 @@ var keys = require("./keys.js");
 // access keys information //
 
 var spotify = new Spotify(keys.spotify);
+var bandsInTown = keys.bandsInTown;
+var omdbKey = keys.omdb;  // Did not work.
 
 // VARIABLES //
 var input = process.argv;
@@ -124,7 +126,7 @@ function liri(action, searchTerm) {
     // This pulls data from the Bands in Town Artist Events API
     if (action === "concert-this"){
 
-    axios.get("https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=codingbootcamp", { validateStatus: false }).then(
+    axios.get("https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=" + bandsInTown, { validateStatus: false }).then(
     function(response) {
     
         // ERROR HANDLING WORKS, ADD TO OTHERS //
@@ -165,7 +167,7 @@ function liri(action, searchTerm) {
     if (action === "movie-this"){
 
         axios
-        .get("http://www.omdbapi.com/?t=" + searchTerm + "&y=&plot=short&apikey=trilogy").then(
+        .get("http://www.omdbapi.com/?t=" + searchTerm + "&y=&plot=short&apikey=trilogy").then( // "+ omdbKey" instead the key results in a 401 error.
         function(response) {
 
             if (response.data.Title === undefined) {
